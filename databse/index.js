@@ -9,7 +9,7 @@ const client = new Client({
 
 });
 
-module.exports{
+module.exports ={
     client
 }
 
