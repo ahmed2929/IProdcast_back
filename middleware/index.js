@@ -4,7 +4,7 @@ const hpp = require("hpp");
 const rateLimit = require("express-rate-limit");
 const express=require("express");
 const cors = require("cors");
-
+require("dotenv").config();
 const helmetConfig={
     contentSecurityPolicy: {
       directives: {
