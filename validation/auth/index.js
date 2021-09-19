@@ -15,8 +15,7 @@ const registerSchema = Joi.object({
         .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
         .required()
         ,
-    role:  Joi.string().valid('user','creator')
-    .required()
+    
 });
  
 const loginSchema = Joi.object({

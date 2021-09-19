@@ -1,7 +1,7 @@
 const jwt =require("jsonwebtoken");
 const bycript =require("bcryptjs")
 const {JWT_RefreshToken_ExpireIn,JWT_RefreshToken_Secret,JWT_Token_ExpireIn,JWT_Token_Secret}=require("../../config/index")
-
+const {redis_client} =require("../../config/redisConfig")
 
 
 const generateToken=async(id)=>{
@@ -164,59 +164,11 @@ const isAuth = async (req, res, next) => {
     // If the user has valid token then Find the user by decoded token's id
     
     let authUser = await User.findById(decodedToken.sub.toString())
-    .populate('postedJobs')
-    if (!authUser) {
-        req.isAuth = false;
-        return next();
-    }
-    //console.debug(authUser)
     req.isAuth = true;
     req.user = authUser;
     return next();
 }
 
-const isAuthFunction =async (tokenString) => {
- 
-    // Extract Authorization Header
-    const authHeader = tokenString
-  // console.debug("authHeader is ",authHeader)
-    if (!authHeader) {
-       return false;
-    }
-
-    // Extract the token and check for token
-    const token = authHeader.split(" ")[1];
-    
-    if (!token || token === "") {
-        return false;
-    }
-
-    // Verify the extracted token
-    let decodedToken;
-    try {
-        decodedToken = await jwt.verify(token,process.env.JWT_Token_Secret);
-    } catch (err) {
-        return false
-    }
-
-    // If decoded token is null then set authentication of the request false
-    if (!decodedToken) {
-    
-        return false
-    }
-
-    // If the user has valid token then Find the user by decoded token's id
-    
-    let authUser = await User.findById(decodedToken.sub.toString())
-    .populate('postedJobs')
-    if (!authUser) {
-        
-        return false;
-    }
-    //console.debug(authUser)
-    
-    return authUser
-}
 
 module.exports={
     generateRefreshToken,
@@ -226,5 +178,5 @@ module.exports={
     hashPassword,
     comparePassword,
     isAuth,
-    isAuthFunction
+  
 }
