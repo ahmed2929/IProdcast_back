@@ -1,6 +1,6 @@
 const mongoose =require("mongoose")
 const DB= process.env.DB
-console.log(DB)
+
 module.exports= async()=>{
    
     return mongoose.connect(DB, {
