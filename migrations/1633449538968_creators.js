@@ -10,7 +10,10 @@ exports.up = pgm => {
         updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
         email varchar(40),
         password varchar(200),
-        status varchar(15)
+        status varchar(15),
+        first_name varchar(40),
+        last_name varchar(40),
+        
       )
 
 

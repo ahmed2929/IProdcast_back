@@ -10,7 +10,8 @@ exports.up = pgm => {
         updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
         photo_url varchar(200),
         description varchar(250),
-        creator_id integer REFERENCES creators(id) on delete cascade
+        creator_id integer REFERENCES creators(id) on delete cascade,
+        title varchar(250)
       )
 
 

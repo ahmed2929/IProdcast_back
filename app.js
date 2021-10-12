@@ -2,6 +2,7 @@ const {startServer} =require('./server');
 const {setMeiddlewares} =require("./middleware/index")
 const DB=require("./database/config/index")
 require("dotenv").config();
+const DB_CRUD=require("./utils/db/crud")
 const DB_Config={
     host:process.env.DB_HOST,
     user:process.env.DB_USER,
@@ -21,12 +22,12 @@ try {
    await DB.connect(DB_Config);
    console.log("Database connected");
 
+
 } catch (error) {
     console.log(error);  
 }
 
 
- 
 
 })();
   

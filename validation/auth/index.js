@@ -1,11 +1,22 @@
 const Joi = require('joi');
 
 const registerSchema = Joi.object({
-    name: Joi.string()
+    first_name: Joi.string()
         .alphanum()
         .min(3)
-        .max(30)
+        .max(40)
         .required(),
+    last_name: Joi.string()
+        .alphanum()
+        .min(3)
+        .max(40)
+        .required(),
+    title: Joi.string()
+        .alphanum()
+        .min(3)
+        .max(40)
+        .required(),    
+        
 
     password: Joi.string()
         .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$'))

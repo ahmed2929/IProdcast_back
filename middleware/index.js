@@ -5,6 +5,7 @@ const rateLimit = require("express-rate-limit");
 const express=require("express");
 const cors = require("cors");
 require("dotenv").config();
+const authRouter = require("../apis/auth/index");
 const helmetConfig={
     contentSecurityPolicy: {
       directives: {
@@ -74,6 +75,7 @@ const setMeiddlewares = (app) => {
    //HTTP parament pollution
    app.use(hpp());
    
+   app.use("/api/v1/auth", authRouter);
 
     return app;
 }
